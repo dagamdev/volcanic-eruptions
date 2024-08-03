@@ -1,19 +1,18 @@
 ---
-
+import Layout from '../layouts/Layout.astro'
+import Chart from '../components/chart.astro'
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Erupciones volcánicas</title>
-	</head>
-	<body>
-		<slot />
-    Hola esto es en español
-	</body>
-</html>
+<Layout title="Erupciones volcánicas">
+	<main>
+		<h1>Erupciones volcánicas</h1>
+		<p>
+			Gráfica de cantidad de erupciones volcánicas desde 1927 a la actualidad.
+		</p>
+		<Chart/>
+		<p>
+			Esta información fue recabada de la fuente <span>Smithsonin Institution - Global Volcansm Program</span> (<a href="https://volcano.si.edu/">https://volcano.si.edu/</a>).
+		</p>
+		<p>Se hace una petición a su base de datos a través de su servicio <span>E3 WebApp Support</span> en <a href="https://volcano.si.edu/database/webservices.cfm">https://volcano.si.edu/database/webservices.cfm</a>, así que si actualizan su información esta gráfica estará actualizada.</p>
+	</main>
+</Layout>
