@@ -10,17 +10,27 @@ import { createChart } from 'lightweight-charts'
   import { createChart, ColorType } from 'lightweight-charts'
   import type { Eruption } from '../types'
 
+  const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+
   const container = document.getElementById('chart') ?? 'chart'
   const chart = createChart(container, {
     layout: {
-      textColor: 'white',
+      textColor: isDark ? 'white' : 'black',
       background: {
         type: ColorType.Solid,
-        color: 'black'
+        color: isDark ? '#282828' : '#d7d7d7'
       }
+    },
+    grid: {
+      vertLines: { color: '#444' },
+      horzLines: { color: '#444' },
     }
   })
-  const areaSeries = chart.addAreaSeries()
+  const areaSeries = chart.addAreaSeries({
+    lineColor: '#ef4444',
+    topColor: '#ef4444',
+    bottomColor: '#ef444410'
+  })
   
   try {
     const res = await fetch('/eruptions')
@@ -65,23 +75,8 @@ import { createChart } from 'lightweight-charts'
       chartData.splice(i, 0, ...newData)
     }
 
-    console.log(chartData)
-
     areaSeries.setData(chartData)
-    // areaSeries.setData([
-    //   { time: '2018-02-22', value: 32.51 },
-    //   { time: '2018-02-23', value: 31.11 },
-    //   { time: '2018-02-24', value: 27.02 },
-    //   { time: '2018-03-25', value: 27.32 },
-    //   { time: '2018-03-26', value: 25.17 },
-    //   { time: '2018-03-27', value: 28.89 },
-    //   { time: '2018-04-28', value: 25.46 },
-    //   { time: '2018-05-29', value: 23.92 },
-    //   { time: '2018-05-30', value: 22.68 },
-    //   { time: '2018-06-30', value: 22.67 },
-    // ])
-
-    chart.timeScale().fitContent();
+    chart.timeScale().fitContent()
     
   } catch (error) {
     console.error(error)
@@ -90,6 +85,6 @@ import { createChart } from 'lightweight-charts'
 
 <style>
   #chart {
-    height: 400px;
+    height: 300px;
   }
 </style>
