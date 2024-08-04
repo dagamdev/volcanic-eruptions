@@ -1,34 +1,21 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import Chart from '../components/chart.astro'
+
+const title = 'Volcanic eruptions'
 ---
 
-<Layout title="Volcanic eruptions">
+<Layout title={title} description='Discover the interactive graph of the number of volcanic eruptions from 1927 to the present. Explore historical data now.'>
 	<main>
-		<h1>Erupciones volcanicas</h1>
+		<h1>{title}</h1>
 		<p>
-			Grafica con las cantidades de erupciones volcanicas registradas en la historia.
+			Graph of the number of volcanic eruptions from 1927 to the present.
 		</p>
-
 		<Chart/>
+		<p>This information was gathered from the Smithsonian Institution - Global Volcanism Program (<a href="https://volcano.si.edu" target="_blank">https://volcano.si.edu</a>)</p>
+		<p>A request is made to their database through their E3 WebApp Support service at <a href="https://volcano.si.edu/database/webservices.cfm" target="_blank">https://volcano.si.edu/database/webservices.cfm</a>, so if they update their information, this chart will be updated.</p>
 	</main>
+	<footer>
+		Page created by Dagamdev - August 2024
+	</footer>
 </Layout>
-
-<style>
-	main {
-		margin: auto;
-		padding: 1rem;
-		width: 800px;
-		max-width: calc(100% - 2rem);
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
-	}
-	h1 {
-		font-size: 4rem;
-		font-weight: 700;
-		line-height: 1;
-		text-align: center;
-		margin-bottom: 1em;
-	}
-</style>
