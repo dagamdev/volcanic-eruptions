@@ -1,18 +1,23 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import Chart from '../components/chart.astro'
+
+const title = 'Erupciones volcánicas'
 ---
 
-<Layout title="Erupciones volcánicas">
+<Layout title={title} description='Descubre la gráfica interactiva de la cantidad de erupciones volcánicas desde 1927 hasta la actualidad. Explora los datos históricos ahora.'>
 	<main>
-		<h1>Erupciones volcánicas</h1>
+		<h1>{title}</h1>
 		<p>
 			Gráfica de cantidad de erupciones volcánicas desde 1927 a la actualidad.
 		</p>
 		<Chart/>
 		<p>
-			Esta información fue recabada de la fuente <span>Smithsonin Institution - Global Volcansm Program</span> (<a href="https://volcano.si.edu/">https://volcano.si.edu/</a>).
+			Esta información fue recabada de la fuente <span>Smithsonin Institution - Global Volcansm Program</span> (<a href="https://volcano.si.edu" target="_blank">https://volcano.si.edu</a>).
 		</p>
 		<p>Se hace una petición a su base de datos a través de su servicio <span>E3 WebApp Support</span> en <a href="https://volcano.si.edu/database/webservices.cfm">https://volcano.si.edu/database/webservices.cfm</a>, así que si actualizan su información esta gráfica estará actualizada.</p>
 	</main>
+	<footer>
+		Pagina creada por Dagamdev - Agosto 2024
+	</footer>
 </Layout>
