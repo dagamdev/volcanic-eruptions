@@ -38,6 +38,8 @@ import { createChart } from 'lightweight-charts'
     const chartData: {time: string, value: number}[] = []
 
     for (const eruption of eruptions) {
+      if (eruption.StartDateYear < 1930) continue
+      
       const time = `${eruption.StartDateYear}-06-15`
       const data = chartData.find(mp => mp.time === time)
 
