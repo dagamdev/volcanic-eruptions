@@ -55,25 +55,10 @@ export function formatXMLData (xml: string) {
   return res
 }
 
-
-export let eruptionsCache: Record<string, string | number | boolean>[] = []
-async function eruptionsFetch () {
-  try {
-    const url = 'https://webservices.volcano.si.edu/geoserver/GVP-VOTW/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=GVP-VOTW:E3WebApp_Eruptions1960&maxFeatures=100'
-    const res = await fetch(url)
-    const text = await res.text()
-    
-    eruptionsCache = formatXMLData(text)
-  } catch (error) {
-    console.error(error)
-  }
-}
-
-setInterval(() => {
-  eruptionsFetch()
-}, 3600_000 * 24)
-
 export async function getEruptions () {
-  if (eruptionsCache.length === 0) eruptionsFetch()
-  return eruptionsCache
+  const url = 'https://webservices.volcano.si.edu/geoserver/GVP-VOTW/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=GVP-VOTW:E3WebApp_Eruptions1960'
+  const res = await fetch(url)
+  const text = await res.text()
+  
+  return formatXMLData(text)
 }
